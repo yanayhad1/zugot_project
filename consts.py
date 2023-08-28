@@ -14,6 +14,9 @@ screen = []
 MINE = pygame.image.load("./bin/mine.png")
 MINE = pygame.transform.scale(MINE, (30, 10))
 FLAG = pygame.image.load("./bin/flag.png")
+FLAG = pygame.transform.scale(FLAG, (30, 40))
 SOLDIER = pygame.image.load("./bin/soldier.png")
 SOLDIER = pygame.transform.scale(SOLDIER, (40, 20))
+BUSH = pygame.image.load("bin/grass.png")
+BUSH = pygame.transform.scale(BUSH, (30, 30))
 
