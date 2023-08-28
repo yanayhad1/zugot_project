@@ -23,9 +23,22 @@ def get_random_cols_for_mines(screen_indexes):
     for mine in range(20):
         random_chose = random.choice(screen_indexes)
         screen_image = consts.screen[random_chose[0]][random_chose[1]]
-        while screen_image == soldier or screen_image == flag:
+        while screen_image == consts.SOLDIER or screen_image == consts.FLAG:
             random_chose = random.choice(screen_indexes)
             screen_image = consts.screen[random_chose[0]][random_chose[1]]
         mines_indexes.append(random_chose
                              )
     return mines_indexes
+
+
+def put_mines_in_screen(mines_indexes):
+    for mine in mines_indexes:
+        consts.screen[mine[0]][mine[1]] = consts.MINE
+
+
+def check_index_for_flag_overlap(index):
+    return consts.screen[index[0]][index[1]] == consts.FLAG
+
+
+def check_index_for_mine_overlap(index):
+    return consts.screen[index[0]][index[1]] == consts.MINE
