@@ -1,47 +1,36 @@
 import consts
 import pygame
-import random
 import game_field
+import soldier
 
 screen = pygame.display.set_mode((consts.WINDOW_WIDTH, consts.WINDOW_HEIGHT))
-game_field.generate_screen_matrix()
-
-
-def get_indexes_for_bushes():
-    matrix_indexes = game_field.get_matrix_indexes()
-    bushes_indexes = []
-    for bush in range(20):
-        choise = random.choice(matrix_indexes)
-        screen_position = consts.screen[choise[0]][choise[1]]
-        while screen_position == consts.SOLDIER or screen_position == consts.FLAG or screen_position == consts.MINE:
-            choise = random.choice(matrix_indexes)
-            screen_position = screen[choise[0]][choise[1]]
-        bushes_indexes.append(choise)
-    return bushes_indexes
+consts.screen = game_field.generate_screen_matrix()
 
 
 def draw_matrix(matrix):
-    for i in range(len(matrix)):
-        for j in range(len(matrix[0])):
-            pygame.draw.rect(screen, (0, 0, 0), (j * consts.SIZE, i * consts.SIZE, consts.SIZE - 1, consts.SIZE - 1))
+    for row in range(len(matrix)):
+        for col in range(len(matrix[row])):
+            matrix_element = matrix[row][col]
+
+            # pygame.draw.rect(screen, (0, 0, 0),
+            # (col * consts.SIZE, row * consts.SIZE, consts.SIZE - 1, consts.SIZE - 1))
+
+            if matrix_element != consts.FREE:
+                if matrix_element == consts.FLAG:
+                    draw_object(consts.FLAG, (consts.WINDOW_WIDTH - 30, consts.WINDOW_HEIGHT - 40))
+                elif matrix_element == consts.MINE:
+                    draw_object(consts.MINE, (col * consts.SIZE, row * consts.SIZE))
+                else:
+                    draw_object(matrix_element, (col * consts.SIZE, row * consts.SIZE))
 
 
-def draw_mines(miens_indexes):
-    screen.blit(consts.MINE, (miens_indexes[0] * consts.SIZE, miens_indexes[1] * consts.SIZE))
+def draw_object(object_img, object_indexes):
+    screen.blit(object_img, (object_indexes[0], object_indexes[1]))
 
 
-mines_indexes = game_field.get_random_cols_for_mines(game_field.get_matrix_indexes())
-bush_indexes = get_indexes_for_bushes()
 def draw_game():
     screen.fill(consts.BACKGROUND_COLOR)
-    draw_matrix([[0 for _ in range(consts.NUM_COLS)] for __ in range(consts.NUM_ROWS)])
-    game_field.generate_screen_matrix()
-    screen.blit(consts.SOLDIER, (-15, 0))
-    screen.blit(consts.FLAG, (470, 210))
-    for mine in mines_indexes:
-        draw_mines(mine)
-    for bush in bush_indexes:
-        screen.blit(consts.BUSH, (bush[0] * consts.SIZE, bush[1] * consts.SIZE))
 
+    draw_matrix(consts.screen)
 
     pygame.display.flip()
