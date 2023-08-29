@@ -4,6 +4,7 @@ import game_field
 import soldier
 import pygame
 import time
+import keyboard
 
 game_state = {
     "is_game_running": True,
@@ -72,6 +73,25 @@ def handle_user_events():
                 if game_state["mines_show_count"] == 0:
                     game_state["is_mines_show"] = True
                     game_state["mines_show_count"] = 1
+            elif event.key == pygame.K_1 or event.key == pygame.K_2 or event.key == pygame.K_3:
+                print(get_key())
+
+
+def get_key():
+    save_key = keyboard.read_event()
+    start = 0
+    end = 0
+
+    if save_key.event_type == "down":
+        start = time.time()
+
+        new_save_key = keyboard.read_event()
+        while not new_save_key.event_type == "up" and new_save_key.name == save_key.name:
+            new_save_key = keyboard.read_event()
+
+        end = time.time()
+
+    return end - start, save_key.name-1
 
 
 if __name__ == '__main__':

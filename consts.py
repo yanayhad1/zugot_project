@@ -39,5 +39,6 @@ WIN_COLOR = (89, 89, 89)
 WIN_LOCATION = \
     (0.2 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (WIN_FONT_SIZE / 2))
 
+DATABASE_NAME = './database.csv'
 
 FONT_NAME = "Calibri"
