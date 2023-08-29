@@ -34,9 +34,12 @@ def get_indexes_for_object():
 
     for object_index in range(20):
         choice = random.choice(matrix_indexes)
+        if choice[1] in [49, 48]:
+            choice = (choice[0], choice[1]-2)
+
         screen_position = consts.screen[choice[0]][choice[1]]
 
-        while choice in soldier.find_soldier_legs_index() or choice in soldier.find_soldier_body_index() or screen_position == consts.FLAG or screen_position == consts.MINE:
+        while choice in soldier.find_soldier_legs_index(soldier.define_soldier_position()) or choice in soldier.find_soldier_body_index(soldier.define_soldier_position()) or screen_position == consts.FLAG or screen_position == consts.MINE or screen_position == consts.BUSH:
             choice = random.choice(matrix_indexes)
             screen_position = consts.screen[choice[0]][choice[1]]
 
