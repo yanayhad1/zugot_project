@@ -41,3 +41,5 @@ WIN_LOCATION = \
 
 
 FONT_NAME = "Calibri"
+
+DATABASE_NAME = "database.csv"

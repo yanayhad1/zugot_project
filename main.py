@@ -1,3 +1,4 @@
+import database
 import screen
 import consts
 import game_field
@@ -72,6 +73,14 @@ def handle_user_events():
                 if game_state["mines_show_count"] == 0:
                     game_state["is_mines_show"] = True
                     game_state["mines_show_count"] = 1
+            elif event.key == pygame.K_a: # key 'a'
+                start = time.time()
+        if event == pygame.KEYUP:
+            if event == pygame.K_1:
+                STOP = time.time()
+                sec = start - STOP
+                print(sec)
+
 
 
 if __name__ == '__main__':
