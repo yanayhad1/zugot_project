@@ -64,3 +64,25 @@ def move_soldier(mode):
         consts.screen[current_soldier_index[0]][current_soldier_index[1] + 1] = consts.SOLDIER
     elif mode == consts.LEFT:
         consts.screen[current_soldier_index[0]][current_soldier_index[1] - 1] = consts.SOLDIER
+
+
+def is_lose():
+    output = False
+    legs_position = find_soldier_legs_index()
+    for leg in legs_position:
+        if consts.screen[leg[0]][leg[1]] == consts.MINE:
+            output = True
+            break
+    return output
+
+
+def is_won():
+    output = False
+    counter = 0
+    body_position = find_soldier_body_index()
+    for body_part in body_position:
+        if body_part in consts.FLAG_INDEXES:
+            output = True
+            break
+    return output
+

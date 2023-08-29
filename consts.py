@@ -25,4 +25,17 @@ SOLDIER = pygame.image.load("./bin/soldier.png")
 SOLDIER = pygame.transform.scale(SOLDIER, (40, 40))
 BUSH = pygame.image.load("bin/grass.png")
 BUSH = pygame.transform.scale(BUSH, (30, 30))
+FLAG_INDEXES = [(21, 46), (22, 46), (23, 46), (21, 47), (22, 47), (23, 47), (21, 48), (22, 48), (23, 48), (21, 49), (22, 49), (23, 49)]
+LOSE_MESSAGE = "You Lost!"
+LOSE_FONT_SIZE = int(0.15 * WINDOW_WIDTH)
+LOSE_COLOR = (0,0,0)
+LOSE_LOCATION = \
+    (0.2 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (LOSE_FONT_SIZE / 2))
+WIN_MESSAGE = "You Won!"
+WIN_FONT_SIZE = LOSE_FONT_SIZE
+WIN_COLOR = (89, 89, 89)
+WIN_LOCATION = \
+    (0.2 * WINDOW_WIDTH, WINDOW_HEIGHT / 2 - (WIN_FONT_SIZE / 2))
 
+
+FONT_NAME = "Calibri"
