@@ -56,7 +56,7 @@ def draw_game(game_state):
 
         draw_matrix(consts.screen, game_state["is_mines_show"])
 
-        draw_object(consts.SOLDIER, soldier.define_soldier_position())
+        draw_object(consts.SOLDIER, (soldier.define_soldier_position()[1] * consts.SIZE, soldier.define_soldier_position()[0] * consts.SIZE))
         draw_object(consts.FLAG, consts.FLAG_SIZES)
         draw_mines(game_state["mines"])
 
