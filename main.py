@@ -23,6 +23,9 @@ def main():
     consts.screen[-1][-1] = consts.FLAG
     mines_indexes = game_field.get_indexes_for_object()
     game_field.put_objects_in_screen(consts.MINE, mines_indexes)
+    game_state["mines"] = mines_indexes
+    bush_indexes = game_field.get_indexes_for_object()
+    game_field.put_objects_in_screen(consts.BUSH, bush_indexes)
 
     # print(consts.screen)
     # print(mines_indexes, soldier.find_soldier_body_index(), soldier.find_soldier_legs_index())
@@ -33,6 +36,11 @@ def main():
             break
 
         handle_user_events()
+
+        if soldier.is_won():
+            game_state["is_won"] = True
+        if soldier.is_lose():
+            game_state["is_lose"] = True
 
         screen.draw_game(game_state)
 

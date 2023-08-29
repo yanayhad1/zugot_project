@@ -53,7 +53,6 @@ def check_if_soldier_out_of_matrix(soldier_position):
 
 def move_soldier(mode):
     current_soldier_index = define_soldier_position()
-    consts.screen[current_soldier_index[0]][current_soldier_index[1]] = consts.FREE
 
     if mode == consts.UP:
         if not check_if_soldier_out_of_matrix((current_soldier_index[0] - 1, current_soldier_index[1])):
@@ -75,7 +74,7 @@ def move_soldier(mode):
 
 def is_lose():
     output = False
-    legs_position = find_soldier_legs_index()
+    legs_position = find_soldier_legs_index(define_soldier_position())
     for leg in legs_position:
         if consts.screen[leg[0]][leg[1]] == consts.MINE:
             output = True
@@ -86,7 +85,7 @@ def is_lose():
 def is_won():
     output = False
     counter = 0
-    body_position = find_soldier_body_index()
+    body_position = find_soldier_body_index(define_soldier_position())
     for body_part in body_position:
         if body_part in consts.FLAG_INDEXES:
             output = True
